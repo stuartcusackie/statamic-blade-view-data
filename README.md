@@ -18,7 +18,7 @@ php please vendor:publish --tag=statamic-blade-view-data-config
 
 ## Config setup
 
-Make sure to publish the config above and set up your required view and navigation options.
+Make sure to publish the config above and set up your required views.
 
 
 ## Usage
