@@ -31,7 +31,7 @@ A Laravel facade is provided by the package. It has a few methods:
 To use it in blade views:
 
 ```
-StatData::globalSet('social')['facebook_url'])
+StatData::globalSet('social')['facebook_url']
 ```
 
 To use it in classes we need a forward slash:
