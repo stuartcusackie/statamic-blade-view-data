@@ -1,6 +1,6 @@
 # Statamic Blade View Data
 
-Facades to access Statamic data from within Blade views and components. Also includes built-in caching of navigations.
+Optimised Facades to access Statamic data from within Blade views and components. Also includes built-in caching of navigations.
 
 
 ## Installation
