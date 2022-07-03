@@ -1,6 +1,6 @@
 # Statamic Blade View Data
 
-Facades to access Statamic data from within Blade views and components.
+Optimised facades to access Statamic data from within Blade views and components. Likely to become redundant when Statamic has better blade component support.
 
 
 ## Installation
