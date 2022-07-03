@@ -34,7 +34,7 @@ To use it in blade views:
 StatData::globalSet('social')['facebook_url']
 ```
 
-To use it in classes we need a forward slash:
+To use it in classes or components we need a forward slash:
 
 ```
 $page = \StatData::page();
