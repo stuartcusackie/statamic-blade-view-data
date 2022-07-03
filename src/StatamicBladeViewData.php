@@ -25,7 +25,7 @@ class StatamicBladeViewData {
         
         $this->page = $viewData['page'];
         $this->site = $viewData['site'];
-        $this->globals = $this->initGlobals($viewData);
+        $this->globalSets = $this->initGlobalSets($viewData);
         $this->navs = $this->initNavs();
         
     }
@@ -47,10 +47,19 @@ class StatamicBladeViewData {
         return $this->navs[$handle];
     }
 
-    protected function initGlobals($viewData) {
+    public function globalSet(string $handle) {
+
+        if(!array_key_exists($handle, $this->globalSets)){
+            throw new \Exception('A global set with this handle does not exist: ' . $handle);
+        }
+
+        return $this->globalSets[$handle];
+    }
+
+    protected function initGlobalSets($viewData) {
 
         return array_filter($viewData, function($v, $k) {
-            return is_string($v) && strpos($v, 'Statamic\Globals\GlobalSet') !== false;
+            return is_object($v) && get_class($v) == 'Statamic\Globals\Variables';
         }, ARRAY_FILTER_USE_BOTH);
 
     }

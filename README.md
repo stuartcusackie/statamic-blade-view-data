@@ -27,6 +27,7 @@ A Laravel facade is provided by the package. It has a few methods:
 - StatData::page() - Returns the Statamic page object
 - StatData::site() - Returns Statamic site object
 - StatData::nav('handle') - Returns a specific nav
+- StatData::globalSet('social') - Returns a specific global set
 
 To use it in blade views:
 
