@@ -12,6 +12,7 @@ composer require stuartcusackie/statamic-blade-view-data
 php please vendor:publish --tag=statamic-blade-view-data-config
 ```
 
+
 ## Config setup
 
 Make sure to publish the config above and set up your required view and navigation options.
@@ -19,10 +20,10 @@ Make sure to publish the config above and set up your required view and navigati
 
 ## Usage
 
-A Laravel facade is provided by the package. It has a few methods:
-StatData::page() - Returns the Statamic page object
-StatData::site() - Returns Statamic site object
-StatData::nav('handle') - Returns a specific nav
+A Laravel facade is provided by the package. It has a few methods:  
+- StatData::page() - Returns the Statamic page object
+- StatData::site() - Returns Statamic site object
+- StatData::nav('handle') - Returns a specific nav
 
 To use it in blade views:
 
