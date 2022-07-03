@@ -10,17 +10,20 @@ use stuartcusackie\StatamicBladeViewData\StatamicBladeViewData;
 class ServiceProvider extends AddonServiceProvider
 {   
 
-    public function register()
+    public function bootAddon()
     {
         
+        $this
+            ->registerServices();
+            ->registerViewComposers();
 
     }
 
-    public function bootAddon()
+    protected function registerServices()
     {
         $this->app->singleton('StatData', StatamicBladeViewData::class);
-        $this->registerViewComposers();
 
+        return $this;
     }
 
 
@@ -30,13 +33,7 @@ class ServiceProvider extends AddonServiceProvider
         View::composer(config('statamic-blade-view-data.views'), function ($view) {
 
             \StatData::init($view->getData());
-            
-            // This doesn't work
-            // $thing = $this->app->make('StatData');
-            // $thing->init($view->getData());
-            
-            // Do we need this? Probably not.
-            // $view->with($view->getData()));
+        
         });
 
         return $this;
