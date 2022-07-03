@@ -1,0 +1,38 @@
+{
+    "name": "stuartcusackie/statamic-blade-view-data",
+    "license": "MIT",
+    "description": "Access Statamic variables from any blade view or component.",
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^8.0",
+        "laravel/framework": "^8.0 || ^9.0",
+        "statamic/cms": "~3.3.12"
+    },
+    "autoload": {
+        "files": [
+            "src/helpers.php"
+        ],
+        "psr-4": {
+            "stuartcusackie\\StatamicBladeViewData\\": "src"
+        }
+    },
+    "authors": [
+        {
+            "name": "Stuart Cusack",
+            "email": "stuart@stuartcusack.ie",
+            "homepage": "https://stuartcusack.ie",
+            "role": "President"
+        }
+    ],
+    "extra": {
+        "statamic": {
+            "name": "Statamic Blade View Data",
+            "description": "Access Statamic variables from any blade view or component."
+        },
+        "laravel": {
+            "providers": [
+                "stuartcusackie\\StatamicBladeViewData\\ServiceProvider"
+            ]
+        }
+    }
+}
