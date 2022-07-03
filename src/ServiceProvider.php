@@ -14,7 +14,7 @@ class ServiceProvider extends AddonServiceProvider
     {
         
         $this
-            ->registerServices();
+            ->registerServices()
             ->registerViewComposers();
 
     }
