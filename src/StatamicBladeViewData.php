@@ -79,6 +79,7 @@ class StatamicBladeViewData {
             }
             else {
                 $nav = $this->getNav($handle, $options);
+                Cache::forget('statamic_nav_' . $handle);
             }
 
             $navs[$handle] = $nav;
