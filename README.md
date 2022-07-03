@@ -1,6 +1,6 @@
 # Statamic Blade View Data
 
-Optimised Facades to access Statamic data from within Blade views and components. Also includes built-in caching of navigations.
+Facades to access Statamic data from within Blade views and components. Also includes built-in caching of navigations.
 
 
 ## Installation
@@ -26,37 +26,16 @@ Make sure to publish the config above and set up your required view and navigati
 A Laravel facade is provided by the package. It has a few methods:  
 - StatData::page() - Returns the Statamic page object
 - StatData::site() - Returns Statamic site object
-- StatData::nav('handle') - Returns a specific nav
 - StatData::globalSet('social') - Returns a specific global set
 
 To use it in blade views:
 
 ```
-@foreach(StatData::nav('main') as $item)
-  {{-- Do whatever --}}
-@endforeach
+StatData::globalSet('social')['facebook_url'])
 ```
 
 To use it in classes we need a forward slash:
 
 ```
 $page = \StatData::page();
-```
-
-
-## Cache Clearing
-
-If you enabled caching on navs or other view data then it will be cached forever, so you will have to flush it at some point.
-
-A good way to flush cached items is to use your EventServiceProvider class. Here is an example for flushing a cached navigation
-after it has been edited in the control panel:
-
-```
-public function boot()
-{
-  Event::listen(function (NavTreeSaved $event) {
-
-    // Just append your navs handle to 'statamic_nav_your-handle'
-    Cache::forget('statamic_nav_main');
-  });
 ```
