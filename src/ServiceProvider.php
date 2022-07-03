@@ -29,7 +29,7 @@ class ServiceProvider extends AddonServiceProvider
 
     protected function registerViewComposers()
     {
-        // Could probably just queries all collections and their views automatically?
+        // Could probably just query all collections and their views automatically?
         View::composer(config('statamic-blade-view-data.views'), function ($view) {
 
             \StatData::init($view->getData());
