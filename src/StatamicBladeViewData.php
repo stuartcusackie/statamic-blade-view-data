@@ -70,25 +70,32 @@ class StatamicBladeViewData {
 
         foreach(config('statamic-blade-view-data.navs') as $handle => $options) {
 
-            if(!empty($options['params']['select'])) {
-                $nav = \Statamic::tag('nav:' . $handle)->params(['select' => $options['params']['select']])->fetch();
-            }
-            else {
-                $nav = \Statamic::tag('nav:' . $handle)->fetch();
-            }
-
             if($options['cache']) {
 
-                Cache::rememberForever('statamic_nav_' . $handle, function() use($nav) {
-                    return $nav;
+                $nav = Cache::rememberForever('statamic_nav_' . $handle, function() use ($handle, $options) {
+                    return $this->getNav($handle, $options);
                 });
 
+            }
+            else {
+                $nav = $this->getNav($handle, $options);
             }
 
             $navs[$handle] = $nav;
         }
 
         return $navs;
+
+    }
+
+    protected function getNav($handle, $options) {
+
+        if(!empty($options['params']['select'])) {
+            return \Statamic::tag('nav:' . $handle)->params(['select' => $options['params']['select']])->fetch();
+        }
+        else {
+            return \Statamic::tag('nav:' . $handle)->fetch();
+        }
 
     }
 }
