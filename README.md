@@ -25,16 +25,16 @@ Make sure to publish the config above and set up your required views.
 
 A Laravel facade is provided by the package. It has a few methods:  
 
-`\StatData::context()`
+`\StatData::context()`  
   Returns the Laravel $__data variable which contains all view variables. Useful for addons that need a context (e.g. SEO Pro).
   
-`\StatData::page()`
+`\StatData::page()`  
   Returns the Statamic page object
   
-`\StatData::site()`
+`\StatData::site()`  
   Returns Statamic site object
   
-`\StatData::globalSet('social')`
+`\StatData::globalSet('social')`  
   Returns a specific global set
 
 To use it in blade views:
