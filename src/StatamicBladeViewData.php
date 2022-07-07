@@ -49,10 +49,6 @@ class StatamicBladeViewData {
 
         // First try to get the global set from existing data
         if(array_key_exists($handle, $this->globalSets)){
-
-            var_dump($this->globalSets[$handle]);
-            die();
-
             return $this->globalSets[$handle];
         }
 
