@@ -9,7 +9,7 @@ class StatamicBladeViewData {
     public $context;
     public $page;
     public $site;
-    public $globals = [];
+    public $globalSets = [];
 
     /**
      * Create a new instance.
@@ -47,11 +47,24 @@ class StatamicBladeViewData {
 
     public function globalSet(string $handle) {
 
-        if(!array_key_exists($handle, $this->globalSets)){
+        // First try to get the global set from existing data
+        if(array_key_exists($handle, $this->globalSets)){
+
+            var_dump($this->globalSets[$handle]);
+            die();
+
+            return $this->globalSets[$handle];
+        }
+
+        // If the view was not correctly added to the config or if
+        // this is a non-entry page then we will have to retrive manually.
+        $globalSet = \Statamic\Facades\Globalset::findByHandle($handle);
+
+        if(!$globalSet){
             throw new \Exception('A global set with this handle does not exist: ' . $handle);
         }
 
-        return $this->globalSets[$handle];
+        return $globalSet->inCurrentSite();
     }
 
     protected function initGlobalSets($viewData) {
