@@ -7,6 +7,7 @@ use Statamic\Providers\AddonServiceProvider;
 use Illuminate\Support\Facades\View;
 use stuartcusackie\StatamicBladeViewData\StatamicBladeViewData;
 use Statamic\Facades\Entry;
+use Statamic\Facades\Term;
 
 class ServiceProvider extends AddonServiceProvider
 {   
