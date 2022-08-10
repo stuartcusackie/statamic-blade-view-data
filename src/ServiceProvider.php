@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Blade;
 use Statamic\Providers\AddonServiceProvider;
 use Illuminate\Support\Facades\View;
 use stuartcusackie\StatamicBladeViewData\StatamicBladeViewData;
-use Statamic\Facades\Collection;
+use Statamic\Facades\Entry;
 
 class ServiceProvider extends AddonServiceProvider
 {   
@@ -32,8 +32,18 @@ class ServiceProvider extends AddonServiceProvider
     {
         $views = [];
 
-        foreach(Collection::all() as $collection) {
-            $views[] = $collection->template();
+        /**
+         * This may not be the most efficient way
+         * espcially if we have lots of entries.
+         * Can we get all templates from blueprints
+         * instead??
+         */
+        foreach(Entry::all() as $entry) {
+
+            if(!in_array($entry->template(), $views)) {
+                $views[] = $entry->template();
+            }
+
         }
 
         View::composer($views, function ($view) {
