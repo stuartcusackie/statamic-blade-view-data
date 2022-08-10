@@ -8,7 +8,7 @@ class StatamicBladeViewData {
 
     public $page;
     public $site;
-    public $globals = [];
+    public $globalSets = [];
 
     /**
      * Create a new instance.
