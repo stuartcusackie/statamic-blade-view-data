@@ -29,7 +29,7 @@ class ServiceProvider extends AddonServiceProvider
 
     /**
      * Process the view data that has been set up
-     * by Statamic. This is bit convoluted but
+     * by Statamic. This is a bit convoluted but
      * it's efficient!
      */
     protected function registerViewComposers()
