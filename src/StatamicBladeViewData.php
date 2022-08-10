@@ -6,10 +6,9 @@ use Illuminate\Support\Facades\Cache;
 
 class StatamicBladeViewData {
 
-    public $context;
     public $page;
     public $site;
-    public $globalSets = [];
+    public $globals = [];
 
     /**
      * Create a new instance.
@@ -22,19 +21,11 @@ class StatamicBladeViewData {
     }
 
     public function init(array $viewData) {
-        $this->context = $viewData;
+        
         $this->page = $viewData['page'];
         $this->site = $viewData['site'];
         $this->globalSets = $this->initGlobalSets($viewData);
-    }
-
-    /**
-     * Return the laravel variable
-     * that contains all view data
-     * usually named $__data.
-     */
-    public function context() {
-        return $this->context;
+        
     }
 
     public function page() {
@@ -47,20 +38,11 @@ class StatamicBladeViewData {
 
     public function globalSet(string $handle) {
 
-        // First try to get the global set from existing data
-        if(array_key_exists($handle, $this->globalSets)){
-            return $this->globalSets[$handle];
-        }
-
-        // If the view was not correctly added to the config or if
-        // this is a non-entry page then we will have to retrive manually.
-        $globalSet = \Statamic\Facades\Globalset::findByHandle($handle);
-
-        if(!$globalSet){
+        if(!array_key_exists($handle, $this->globalSets)){
             throw new \Exception('A global set with this handle does not exist: ' . $handle);
         }
 
-        return $globalSet->inCurrentSite();
+        return $this->globalSets[$handle];
     }
 
     protected function initGlobalSets($viewData) {
