@@ -11,7 +11,8 @@ composer require stuartcusackie/statamic-blade-view-data
 
 ## Usage
 
-A Laravel facade is provided by the package. It has a few methods:  
+A Laravel facade is provided by the package. It has a few methods:
+- StatData::context() - Returns all of the view data
 - StatData::page() - Returns the Statamic page object
 - StatData::site() - Returns Statamic site object
 - StatData::globalSet('social') - Returns a specific global set
@@ -19,7 +20,7 @@ A Laravel facade is provided by the package. It has a few methods:
 To use it in blade views:
 
 ```
-StatData::globalSet('social')['facebook_url'])
+StatData::globalSet('social')['facebook_url']
 ```
 
 To use it in classes we need a forward slash:
