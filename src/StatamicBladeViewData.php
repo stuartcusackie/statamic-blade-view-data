@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Cache;
 
 class StatamicBladeViewData {
 
+    public $context;
     public $page;
     public $site;
     public $globalSets = [];
@@ -22,10 +23,20 @@ class StatamicBladeViewData {
 
     public function init(array $viewData) {
         
+        $this->context = $viewData;
         $this->page = $viewData['page'];
         $this->site = $viewData['site'];
         $this->globalSets = $this->initGlobalSets($viewData);
         
+    }
+    
+    /**
+     * Return the laravel variable
+     * that contains all view data
+     * usually named $__data.
+     */
+    public function context() {
+        return $this->context;
     }
 
     public function page() {
