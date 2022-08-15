@@ -29,8 +29,8 @@ class ServiceProvider extends AddonServiceProvider
     }
 
     /**
-     * Extract the Statamic template data and pass
-     * it to our singleton.
+     * Extract the Statamic template data for the
+     * current entry and pass it to our singleton.
      */
     protected function registerViewComposers()
     {
