@@ -61,7 +61,7 @@ class StatamicBladeViewData {
         if(array_key_exists($handle, $this->globalSets)) {
             return $this->globalSets[$handle];
         }
-        else if($globalSet = GlobalSet::findByHandle($handle)) {
+        else if($globalSet = GlobalSet::findByHandle($handle)->inCurrentSite()) {
             return $globalSet;
         }
 
