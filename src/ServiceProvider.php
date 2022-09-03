@@ -36,24 +36,21 @@ class ServiceProvider extends AddonServiceProvider
      */
     protected function registerViewComposers()
     {
-        // Append slash to path if necessary
-        $path = substr(request()->path(), 0, 1) == '/' ? request()->path() : '/' . request()->path();
+        $template = null;
+        $uri = '/' . request()->path();
+        $sitePrefix = \Statamic\Facades\Site::current()->url;
 
-        // Remove multisite url prefixes if necessary (we can't find entries by uri when they are prefixed)
-        foreach(\Statamic\Facades\Site::all() as $site) {
-
-            if(strlen($site->url) > 1 && str_starts_with($path, $site->url)) {
-                $path = substr($path, strlen($sitePrefix));
-            }
-
+        if(str_starts_with($uri, $sitePrefix)) {
+            $uri = substr($uri, strlen($sitePrefix));
         }
 
-        $template = null;
-
-        if($entry = Entry::findByUri($path)) {
+        // findByUri requires leading slashes
+        $uri = str_starts_with($uri, '/') ? $uri : '/' . $uri;
+       
+        if($entry = Entry::findByUri($uri)) {
             $template = $entry->template();
         }
-        else if($term = Term::findByUri($path)) {
+        else if($term = Term::findByUri($uri)) {
             $template = $term->template();
         }
 
