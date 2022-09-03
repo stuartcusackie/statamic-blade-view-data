@@ -3,6 +3,7 @@
 namespace stuartcusackie\StatamicBladeViewData;
 
 use Illuminate\Support\Facades\Cache;
+use Statamic\Facades\GlobalSet;
 
 class StatamicBladeViewData {
 
@@ -46,14 +47,26 @@ class StatamicBladeViewData {
     public function site() {
         return $this->site;
     }
-
+    
+    /**
+     * Retrieve a global set from the view data
+     * but fallback to a Statamic query in
+     * case we can't find it or is an non-entry / error page.
+     *
+     * @param string $handle
+     * @return set
+     */
     public function globalSet(string $handle) {
 
-        if(!array_key_exists($handle, $this->globalSets)){
-            throw new \Exception('A global set with this handle does not exist: ' . $handle);
+        if(array_key_exists($handle, $this->globalSets)) {
+            return $this->globalSets[$handle];
+        }
+        else if($globalSet = GlobalSet::findByHandle($handle)) {
+            return $globalSet;
         }
 
-        return $this->globalSets[$handle];
+        throw new \Exception('A global set with this handle does not exist: ' . $handle);
+
     }
 
     protected function initGlobalSets($viewData) {
