@@ -42,7 +42,7 @@ class ServiceProvider extends AddonServiceProvider
         // Remove multisite url prefixes if necessary (we can't find entries by uri when they are prefixed)
         foreach(\Statamic\Facades\Site::all() as $site) {
 
-            if(strlen($site->url) > 1 && str_starts_with($site->url, '/') && str_starts_with($path, $site->url)) {
+            if(strlen($site->url) > 1 && str_starts_with($path, $site->url)) {
                 $path = substr($path, strlen($sitePrefix));
             }
 
