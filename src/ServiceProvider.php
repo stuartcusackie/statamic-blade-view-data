@@ -29,9 +29,10 @@ class ServiceProvider extends AddonServiceProvider
     }
 
     /**
-     * Process the view data that has been set up
-     * by Statamic. This is very convoluted but
-     * it's efficient!
+     * Attempt to find an entry of term from the
+     * current url and extract the data from it's
+     * template view.
+     * Not ideal but it works!
      */
     protected function registerViewComposers()
     {
@@ -41,9 +42,7 @@ class ServiceProvider extends AddonServiceProvider
         // Remove multisite url prefixes if necessary (we can't find entries by uri when they are prefixed)
         foreach(\Statamic\Facades\Site::all() as $site) {
 
-            $sitePrefix = str_replace(request()->root(), '', $site->url);
-
-            if(strlen($sitePrefix) && str_starts_with($path, $sitePrefix)) {
+            if(strlen($site->url) > 1 && str_starts_with($site->url, '/') && str_starts_with($path, $site->url)) {
                 $path = substr($path, strlen($sitePrefix));
             }
 
