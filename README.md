@@ -28,3 +28,16 @@ To use it in classes we need a forward slash:
 ```
 $page = \StatData::page();
 ```
+
+
+## Custom Routes
+
+Custom routes that are set up in web.php and that use custom controllers won't be initialised with the Statamic data.
+
+If you are returning a view in your custom controllers then you can initialise the blade data like so:
+
+```
+View::composer('pages/custom-view', function ($view) {
+  \StatData::init($viewData);
+});
+```
