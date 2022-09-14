@@ -40,4 +40,9 @@ If you are returning a view in your custom controllers then you can initialise t
 View::composer('pages/custom-view', function ($view) {
   \StatData::init($viewData);
 });
+
+return (new \Statamic\View\View)
+  ->template('pages/custom-view')
+  ->layout('layouts/app')
+  ->with(['page' => $page]);
 ```
