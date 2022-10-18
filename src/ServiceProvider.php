@@ -38,7 +38,8 @@ class ServiceProvider extends AddonServiceProvider
     {
         $template = null;
         $uri = '/' . request()->path();
-        $sitePrefix = \Statamic\Facades\Site::current()->url;
+        $parts = explode('/', \Statamic\Facades\Site::current()->url);
+        $sitePrefix = '/' . end($parts);
 
         if(str_starts_with($uri, $sitePrefix)) {
             $uri = substr($uri, strlen($sitePrefix));
