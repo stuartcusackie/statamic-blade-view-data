@@ -29,10 +29,9 @@ class ServiceProvider extends AddonServiceProvider
     }
 
     /**
-     * Attempt to find an entry of term from the
+     * Attempt to find an entry or term from the
      * current url and extract the data from it's
-     * template view.
-     * Not ideal but it works!
+     * template view. Not ideal but it works!
      */
     protected function registerViewComposers()
     {
