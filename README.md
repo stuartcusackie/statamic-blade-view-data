@@ -1,6 +1,6 @@
 # Statamic Blade View Data
 
-Facades to access Statamic data from within components.
+Facades to access Statamic data from within Blade components. This package extracts the Statamic data that is passed to your selected template and adds it to a singleton that can be accessed anywhere in your application.
 
 
 ## Installation
