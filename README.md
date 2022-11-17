@@ -4,13 +4,13 @@ Facades to access Statamic data from within Blade components. This package extra
 
 ## DO NOT USE
 
-Since writing this package the devs at Statamic have found a better way to access Statamic data. Use the Cascade facade:
+Since writing this package the devs at Statamic have found a better way to access Statamic data. Use the Cascade facade in any controller or blade component:
 ```
 use Facades\Statamic\View\Cascade;
 
 $cascade = Cascade::instance()->toArray();
-$this->page = $cascade['page'];
-$this->globalAnalytics = $cascade['analytics'];
+$page = $cascade['page'];
+$globalAnalytics = $cascade['analytics'];
 ```
 
 
