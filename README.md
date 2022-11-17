@@ -2,6 +2,17 @@
 
 Facades to access Statamic data from within Blade components. This package extracts the Statamic data that is passed to your selected template and adds it to a singleton that can be accessed anywhere in your application.
 
+## DO NOT USE
+
+Since writing this package the devs at Statamic have found a better way to access Statamic data. Use the Cascade facade:
+```
+use Facades\Statamic\View\Cascade;
+
+$cascade = Cascade::instance()->toArray();
+$this->page = $cascade['page'];
+$this->globalAnalytics = $cascade['analytics'];
+```
+
 
 ## Installation
 
